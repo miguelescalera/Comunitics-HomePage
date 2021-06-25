@@ -1,0 +1,20 @@
+# Original setup from 
+# https://gist.github.com/przbadu/929fc2b0d5d4cd78a5efe76d37f891b6
+
+# we will use node:alpine docker image
+FROM node:alpine
+
+# set /app as work directory
+WORKDIR /app
+
+# copy package.json to work directory, so that we install npm dependencies
+COPY package.json /app
+
+# install npm dependencies
+RUN npm install --force # OR `RUN yarn install`
+
+# copy your project files to work directory
+COPY . /app
+
+# run your app
+CMD ["npm", "start"] # OR CMD ['yarn', 'run', 'start']
